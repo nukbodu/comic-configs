@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Komiic漫画",
+        "fileName": "komiic.js",
+        "key": "Komiic",
+        "version": "1.0.2"
+    },
+    {
+        "name": "包子漫画",
+        "fileName": "baozi.js",
+        "key": "baozi",
+        "version": "1.0.4"
+    },
+    {
+        "name": "拷贝漫画",
+        "fileName": "copy_manga.js",
+        "key": "copy_manga",
+        "version": "1.1.5"
+    },
+    {
+        "name": "紳士漫畫",
+        "fileName": "wnacg.js",
+        "key": "wnacg",
+        "version": "1.0.2",
+        "description": "紳士漫畫漫畫源, 不能使用時請嘗試更換URL"
+    },
+    {
+        "name": "爱看漫",
+        "fileName": "ikmmh.js",
+        "key": "ikmmh",
+        "version": "1.0.2"
+    }
+]
