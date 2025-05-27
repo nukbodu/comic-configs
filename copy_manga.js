@@ -4,7 +4,7 @@ class CopyManga extends ComicSource {
 
     key = "copy_manga"
 
-    version = "1.1.5"
+    version = "1.1.7"
 
     minAppVersion = "1.2.1"
 
@@ -12,7 +12,11 @@ class CopyManga extends ComicSource {
 
     headers = {}
 
-    static copyVersion = "2.2.9"
+    static defaultCopyVersion = "2.2.9"
+
+    get copyVersion() {
+        return this.loadSetting('version')
+    }
 
     get apiUrl() {
         return `https://${this.loadSetting('base_url')}`
@@ -26,15 +30,16 @@ class CopyManga extends ComicSource {
             token = " " + token;
         }
         this.headers = {
-            "User-Agent": "COPY/" + CopyManga.copyVersion,
+            "User-Agent": "COPY/" + this.copyVersion,
             "Accept": "*/*",
             "Accept-Encoding": "gzip",
             "source": "copyApp",
             "webp": "1",
             "region": "1",
-            "version": CopyManga.copyVersion,
+            "version": this.copyVersion,
             "authorization": `Token${token}`,
-            "platform": "3",
+            "platform": "1",
+            "umstring": "b4c89ca4104ea9a97750314d791520ac",
         }
         // 用于储存 { 作者名 : 英文参数 }
         this.author_path_word_dict = {}
@@ -60,15 +65,16 @@ class CopyManga extends ComicSource {
                 let token = data.results.token
                 this.saveData('token', token)
                 this.headers = {
-                    "User-Agent": "COPY/" + CopyManga.copyVersion,
+                    "User-Agent": "COPY/" + this.copyVersion,
                     "Accept": "*/*",
                     "Accept-Encoding": "gzip",
                     "source": "copyApp",
                     "webp": "1",
                     "region": "1",
-                    "version": CopyManga.copyVersion,
+                    "version": this.copyVersion,
                     "authorization": `Token ${token}`,
-                    "platform": "3",
+                    "platform": "1",
+                    "umstring": "b4c89ca4104ea9a97750314d791520ac",
                 }
                 return "ok"
             } else {
@@ -225,7 +231,7 @@ class CopyManga extends ComicSource {
             let category_url;
             // 分类-排行
             if (category === "排行" || param === "ranking") {
-                category_url = `${this.apiUrl}/api/v3/ranks?limit=21&offset=${(page - 1) * 21}&_update=true&type=1&audience_type=${options[0]}&date_type=${options[1]}`
+                category_url = `${this.apiUrl}/api/v3/ranks?limit=30&offset=${(page - 1) * 30}&_update=true&type=1&audience_type=${options[0]}&date_type=${options[1]}`
             } else {
                 // 分类-主题
                 if (category !== undefined && category !== null) {
@@ -233,7 +239,7 @@ class CopyManga extends ComicSource {
                     param = CopyManga.category_param_dict[category] || "";
                 }
                 options = options.map(e => e.replace("*", "-"))
-                category_url = `${this.apiUrl}/api/v3/comics?limit=21&offset=${(page - 1) * 21}&ordering=${options[1]}&theme=${param}&top=${options[0]}&platform=3`
+                category_url = `${this.apiUrl}/api/v3/comics?limit=30&offset=${(page - 1) * 30}&ordering=${options[1]}&theme=${param}&top=${options[0]}&platform=3`
             }
 
 
@@ -356,7 +362,7 @@ class CopyManga extends ComicSource {
             if (author && author in this.author_path_word_dict) {
                 let path_word = encodeURIComponent(this.author_path_word_dict[author]);
                 res = await Network.get(
-                    `${this.apiUrl}/api/v3/comics?limit=21&offset=${(page - 1) * 21}&ordering=-datetime_updated&author=${path_word}&platform=3`,
+                    `${this.apiUrl}/api/v3/comics?limit=30&offset=${(page - 1) * 30}&ordering=-datetime_updated&author=${path_word}&platform=3`,
                     this.headers
                 )
             }
@@ -369,7 +375,7 @@ class CopyManga extends ComicSource {
                 keyword = encodeURIComponent(keyword)
                 let search_url = this.loadSetting('search_api') === "webAPI" ? `${this.apiUrl}/api/kb/web/searchbd/comics` : `${this.apiUrl}/api/v3/search/comic`
                 res = await Network.get(
-                    `${search_url}?limit=21&offset=${(page - 1) * 21}&q=${keyword}&q_type=${q_type}&platform=3`,
+                    `${search_url}?limit=30&offset=${(page - 1) * 30}&q=${keyword}&q_type=${q_type}&platform=1`,
                     this.headers
                 )
             }
@@ -453,7 +459,7 @@ class CopyManga extends ComicSource {
         },
         loadComics: async (page, folder) => {
             var res = await Network.get(
-                `${this.apiUrl}/api/v3/member/collect/comics?limit=21&offset=${(page - 1) * 21}&free_type=1&ordering=-datetime_updated&platform=3`,
+                `${this.apiUrl}/api/v3/member/collect/comics?limit=30&offset=${(page - 1) * 30}&free_type=1&ordering=-datetime_updated&platform=3`,
                 this.headers
             )
 
@@ -799,6 +805,12 @@ class CopyManga extends ComicSource {
             type: "input",
             validator: '^(?!:\\/\\/)(?=.{1,253})([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$',
             default: 'www.copy20.com',
+        },
+        version: {
+            title: "拷贝版本（重启APP生效）",
+            type: "input",
+            validator: '^\\d+(?:\\.\\d+)*$',
+            default: CopyManga.defaultCopyVersion,
         },
     }
 
