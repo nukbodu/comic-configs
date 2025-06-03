@@ -23,6 +23,7 @@
     {
         "name": "拷贝漫画",
         "fileName": "copy_manga.js",
+        "url":"https://cdn.jsdelivr.net/gh/nukbodu/comic-configs@latest/dev/copy_manga.js",
         "key": "copy_manga",
         "version": "1.3.0"
     },{
