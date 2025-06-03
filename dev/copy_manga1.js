@@ -61,7 +61,7 @@ class CopyManga extends ComicSource {
         }
         this.jsonHeaders = {
                     "User-Agent": "COPY/" + this.copyVersion,
-                    "application/json",
+                    "Accept":"application/json",
                     "Accept-Encoding": "gzip",
                     "source": "copyApp",
                     "webp": "1",
