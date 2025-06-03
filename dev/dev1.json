@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Komiic",
+        "fileName":"komiic.js",
+        "url": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/komiic.js",
+        "key": "Komiic",
+        "version": "1.0.2"
+    },
+    {
+        "name": "包子漫画",
+        "fileName":"baozi.js",
+        "url": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/baozi.js",
+        "key": "baozi",
+        "version": "1.0.4"
+    },
+    {
+        "name": "爱看漫",
+        "fileName":"ikmmh.js",
+        "url": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/ikmmh.js",
+        "key": "ikmmh",
+        "version": "1.0.2"
+    },
+    {
+        "name": "拷贝漫画",
+        "fileName": "copy_manga.js",
+        "key": "copy_manga",
+        "version": "1.3.0"
+    },{
+        "name": "MangaDex",
+        "fileName":"manga_dex.js",
+        "url": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/manga_dex.js",
+        "key": "manga_dex",
+        "version": "1.0.0",
+        "description": "Account feature is not supported yet."
+    },
+    {
+        "name": "少年ジャンプ＋",
+        "fileName":"shonenjumpplus.js",
+        "url": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/shonenjumpplus.js",
+        "key": "shonen_jump_plus",
+        "version": "1.0.0"
+    }
+]
