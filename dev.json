@@ -28,5 +28,11 @@
         "key": "manga_dex",
         "version": "1.0.0",
         "description": "Account feature is not supported yet."
+    },
+    {
+        "name": "少年ジャンプ＋",
+        "fileName": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/shonenjumpplus.js",
+        "key": "shonen_jump_plus",
+        "version": "1.0.0"
     }
 ]
