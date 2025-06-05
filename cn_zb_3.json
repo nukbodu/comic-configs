@@ -21,7 +21,7 @@
         "version": "1.0.2"
     },
     {
-        "name": "MangaDex",
+        "name": "Mangadex",
         "fileName":"manga_dex.js",
         "url": "https://cdn.jsdelivr.net/gh/venera-app/venera-configs@latest/manga_dex.js",
         "key": "manga_dex",
